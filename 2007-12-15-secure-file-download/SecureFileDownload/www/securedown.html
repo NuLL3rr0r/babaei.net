@@ -1,0 +1,63 @@
+<!--
+  (The MIT License)
+
+  Copyright (c) 2007 M.S. Babaei
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+-->
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Secure File Download</title>
+</head>
+
+<body>
+    <center>
+        <h3>
+            Secure File Download<br />
+            Using Perl or ASP.NET (C#)<br />
+            And The Other Server Side Languages<br />
+            <br /><br />
+            <hr />
+            Using Perl Script<br /><br />
+            To download you must register<br /><br />
+            <form action="securedown.pl" method="get">
+                <input type="hidden" name="filename" value="test.zip" />
+                Email: <input type="text" name="mail" />
+                &nbsp;<input type="submit" value="Download" /><br /><br />
+            </form>
+            File you requested: test.zip<br /><br />
+            <br /><br />
+            <hr />
+            Using ASP.NET(C#) Script<br /><br />
+            To download you must register<br /><br />
+            <form action="securedown.aspx" method="get">
+                <input type="hidden" name="filename" value="test.zip" />
+                Email: <input type="text" name="mail" />
+                &nbsp;<input type="submit" value="Download" /><br /><br />
+            </form>
+            File you requested: test.zip<br /><br />
+        </h3>
+    </center>
+</body>
+</html>
+
