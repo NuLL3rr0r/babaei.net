@@ -22,6 +22,8 @@
 
 
 
+#include <stdexcept>
+
 #if defined(WIN32)
 #include <windows.h>
 #endif
@@ -80,6 +82,10 @@ bool Crypto::Encrypt(const string &plainText, string &out_encodedText,
         out_error.assign(ex.what());
     }
 
+    catch(std::exception &ex) {
+        out_error.assign(ex.what());
+    }
+
     catch (...) {
         out_error.assign(UNKNOWN_ERROR);
     }
@@ -111,6 +117,10 @@ bool Crypto::Decrypt(const string &cipherText, string &out_recoveredText,
         out_error.assign(ex.what());
     }
 
+    catch(std::exception &ex) {
+        out_error.assign(ex.what());
+    }
+
     catch (...) {
         out_error.assign(UNKNOWN_ERROR);
     }
@@ -132,6 +142,10 @@ bool Crypto::GenerateHash(const string &text, string &out_digest, string &out_er
     }
 
     catch(CryptoPP::Exception &ex) {
+        out_error.assign(ex.what());
+    }
+
+    catch(std::exception &ex) {
         out_error.assign(ex.what());
     }
 
