@@ -44,7 +44,7 @@ int main()
     if (Crypto::Encrypt(pangram, encrypted, err)) {
         cout << "Original :  " << pangram
              << endl
-             << "AES :  " << encrypted
+             << "AES      :  " << encrypted
              << endl;
     } else {
         cout << "Encryption error :  " << err
@@ -55,7 +55,7 @@ int main()
 
     string decrypted;
     if (Crypto::Decrypt(encrypted, decrypted, err)) {
-        cout << "AES :  " << encrypted
+        cout << "AES      :  " << encrypted
              << endl
              << "Original :  " << decrypted
              << endl;
@@ -70,7 +70,7 @@ int main()
     if (Crypto::GenerateHash(pangram, sha1, err)) {
         cout << "Original :  " << pangram
              << endl
-             << "SHA-1 :  " << sha1
+             << "SHA-1    :  " << sha1
              << endl;
     } else {
         cout << "Hash generation error :  " << err
