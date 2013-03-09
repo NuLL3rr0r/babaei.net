@@ -1,3 +1,5 @@
+#!/usr/bin/perl
+
 #  (The MIT License)
 #
 #  Copyright (c) 2007 M.S. Babaei
@@ -20,8 +22,6 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #  THE SOFTWARE.
 
-
-#!/usr/bin/perl
 
 use strict;
 use CGI ':standard';
