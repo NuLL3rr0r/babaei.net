@@ -26,7 +26,7 @@
 
 #if defined(_WIN32) || defined(_WIN64)
 #include <windows.h>
-#endif
+#endif /* defined(_WIN32) || defined(_WIN64) */
 
 #include <cryptopp/aes.h>
 #include <cryptopp/ccm.h>
