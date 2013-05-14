@@ -24,7 +24,7 @@
 
 #include <stdexcept>
 
-#if defined(WIN32)
+#if defined(_WIN32) || defined(_WIN64)
 #include <windows.h>
 #endif
 
@@ -78,11 +78,11 @@ bool Crypto::Encrypt(const string &plainText, string &out_encodedText,
         return true;
     }
 
-    catch(CryptoPP::Exception &ex) {
+    catch (CryptoPP::Exception &ex) {
         out_error.assign(ex.what());
     }
 
-    catch(std::exception &ex) {
+    catch (std::exception &ex) {
         out_error.assign(ex.what());
     }
 
@@ -113,11 +113,11 @@ bool Crypto::Decrypt(const string &cipherText, string &out_recoveredText,
         return true;
     }
 
-    catch(CryptoPP::Exception &ex) {
+    catch (CryptoPP::Exception &ex) {
         out_error.assign(ex.what());
     }
 
-    catch(std::exception &ex) {
+    catch (std::exception &ex) {
         out_error.assign(ex.what());
     }
 
@@ -141,11 +141,11 @@ bool Crypto::GenerateHash(const string &text, string &out_digest, string &out_er
         return true;
     }
 
-    catch(CryptoPP::Exception &ex) {
+    catch (CryptoPP::Exception &ex) {
         out_error.assign(ex.what());
     }
 
-    catch(std::exception &ex) {
+    catch (std::exception &ex) {
         out_error.assign(ex.what());
     }
 
