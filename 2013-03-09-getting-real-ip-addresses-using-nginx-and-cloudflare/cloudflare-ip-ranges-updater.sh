@@ -35,6 +35,7 @@ echo "# Generated at $(date) by $0" >> $CLOUDFLARE_IP_RANGES_FILE_PATH
 echo "" >> $CLOUDFLARE_IP_RANGES_FILE_PATH
 awk '{ print "set_real_ip_from " $0 ";" }' /var/tmp/cloudflare-ips-v4 >> $CLOUDFLARE_IP_RANGES_FILE_PATH
 awk '{ print "set_real_ip_from " $0 ";" }' /var/tmp/cloudflare-ips-v6 >> $CLOUDFLARE_IP_RANGES_FILE_PATH
+echo "real_ip_header CF-Connecting-IP;" >> $CLOUDFLARE_IP_RANGES_FILE_PATH
 echo "" >> $CLOUDFLARE_IP_RANGES_FILE_PATH
 
 chown $WWW_USER:$WWW_GROUP $CLOUDFLARE_IP_RANGES_FILE_PATH
