@@ -27,10 +27,10 @@ CLOUDFLARE_IP_RANGES_FILE_PATH="/usr/local/www/_include/cloudflare"
 WWW_GROUP="www"
 WWW_USER="www"
 
-CLOUDFLARE_IPSV4_REMOTE_FILE=https://www.cloudflare.com/ips-v4
-CLOUDFLARE_IPSV6_REMOTE_FILE=https://www.cloudflare.com/ips-v6
-CLOUDFLARE_IPSV4_LOCAL_FILE=/var/tmp/cloudflare-ips-v4
-CLOUDFLARE_IPSV6_LOCAL_FILE=/var/tmp/cloudflare-ips-v6
+CLOUDFLARE_IPSV4_REMOTE_FILE="https://www.cloudflare.com/ips-v4"
+CLOUDFLARE_IPSV6_REMOTE_FILE="https://www.cloudflare.com/ips-v6"
+CLOUDFLARE_IPSV4_LOCAL_FILE="/var/tmp/cloudflare-ips-v4"
+CLOUDFLARE_IPSV6_LOCAL_FILE="/var/tmp/cloudflare-ips-v6"
 
 if [ -f /usr/bin/fetch ];
 then
