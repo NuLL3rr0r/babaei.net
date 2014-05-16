@@ -27,8 +27,14 @@ CLOUDFLARE_IP_RANGES_FILE_PATH="/usr/local/www/_include/cloudflare"
 WWW_GROUP="www"
 WWW_USER="www"
 
-wget -q -N https://www.cloudflare.com/ips-v4 -O /var/tmp/cloudflare-ips-v4 --no-check-certificate
-wget -q -N https://www.cloudflare.com/ips-v6 -O /var/tmp/cloudflare-ips-v6 --no-check-certificate
+if [ -f /usr/bin/fetch ];
+then
+    fetch https://www.cloudflare.com/ips-v4 --no-verify-hostname --no-verify-peer -o /var/tmp/cloudflare-ips-v4 --quiet
+    fetch https://www.cloudflare.com/ips-v6 --no-verify-hostname --no-verify-peer -o /var/tmp/cloudflare-ips-v6 --quiet
+else
+    wget -q https://www.cloudflare.com/ips-v4 -O /var/tmp/cloudflare-ips-v4 --no-check-certificate
+    wget -q https://www.cloudflare.com/ips-v6 -O /var/tmp/cloudflare-ips-v6 --no-check-certificate
+fi
 
 echo "# CloudFlare IP Ranges" > $CLOUDFLARE_IP_RANGES_FILE_PATH
 echo "# Generated at $(date) by $0" >> $CLOUDFLARE_IP_RANGES_FILE_PATH
