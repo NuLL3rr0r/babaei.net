@@ -27,25 +27,30 @@ CLOUDFLARE_IP_RANGES_FILE_PATH="/usr/local/www/_include/cloudflare"
 WWW_GROUP="www"
 WWW_USER="www"
 
+CLOUDFLARE_IPSV4_REMOTE_FILE=https://www.cloudflare.com/ips-v4
+CLOUDFLARE_IPSV6_REMOTE_FILE=https://www.cloudflare.com/ips-v6
+CLOUDFLARE_IPSV4_LOCAL_FILE=/var/tmp/cloudflare-ips-v4
+CLOUDFLARE_IPSV6_LOCAL_FILE=/var/tmp/cloudflare-ips-v6
+
 if [ -f /usr/bin/fetch ];
 then
-    fetch https://www.cloudflare.com/ips-v4 --no-verify-hostname --no-verify-peer -o /var/tmp/cloudflare-ips-v4 --quiet
-    fetch https://www.cloudflare.com/ips-v6 --no-verify-hostname --no-verify-peer -o /var/tmp/cloudflare-ips-v6 --quiet
+    fetch $CLOUDFLARE_IPSV4_REMOTE_FILE --no-verify-hostname --no-verify-peer -o $CLOUDFLARE_IPSV4_LOCAL_FILE --quiet
+    fetch $CLOUDFLARE_IPSV6_REMOTE_FILE --no-verify-hostname --no-verify-peer -o $CLOUDFLARE_IPSV6_LOCAL_FILE --quiet
 else
-    wget -q https://www.cloudflare.com/ips-v4 -O /var/tmp/cloudflare-ips-v4 --no-check-certificate
-    wget -q https://www.cloudflare.com/ips-v6 -O /var/tmp/cloudflare-ips-v6 --no-check-certificate
+    wget -q $CLOUDFLARE_IPSV4_REMOTE_FILE -O $CLOUDFLARE_IPSV4_LOCAL_FILE --no-check-certificate
+    wget -q $CLOUDFLARE_IPSV6_REMOTE_FILE -O $CLOUDFLARE_IPSV6_LOCAL_FILE --no-check-certificate
 fi
 
 echo "# CloudFlare IP Ranges" > $CLOUDFLARE_IP_RANGES_FILE_PATH
 echo "# Generated at $(date) by $0" >> $CLOUDFLARE_IP_RANGES_FILE_PATH
 echo "" >> $CLOUDFLARE_IP_RANGES_FILE_PATH
-awk '{ print "set_real_ip_from " $0 ";" }' /var/tmp/cloudflare-ips-v4 >> $CLOUDFLARE_IP_RANGES_FILE_PATH
-awk '{ print "set_real_ip_from " $0 ";" }' /var/tmp/cloudflare-ips-v6 >> $CLOUDFLARE_IP_RANGES_FILE_PATH
+awk '{ print "set_real_ip_from " $0 ";" }' $CLOUDFLARE_IPSV4_LOCAL_FILE >> $CLOUDFLARE_IP_RANGES_FILE_PATH
+awk '{ print "set_real_ip_from " $0 ";" }' $CLOUDFLARE_IPSV6_LOCAL_FILE >> $CLOUDFLARE_IP_RANGES_FILE_PATH
 echo "real_ip_header CF-Connecting-IP;" >> $CLOUDFLARE_IP_RANGES_FILE_PATH
 echo "" >> $CLOUDFLARE_IP_RANGES_FILE_PATH
 
 chown $WWW_USER:$WWW_GROUP $CLOUDFLARE_IP_RANGES_FILE_PATH
 
-rm -rf /var/tmp/cloudflare-ips-v4
-rm -rf /var/tmp/cloudflare-ips-v6
+rm -rf $CLOUDFLARE_IPSV4_LOCAL_FILE
+rm -rf $CLOUDFLARE_IPSV6_LOCAL_FILE
 
