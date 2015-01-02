@@ -8,7 +8,7 @@ Full source codes that I've described through my blog posts at http://babaei.net
 
 (The MIT License)
 
-Copyright (c) 2007-2013 Mohammad S. Babaei
+Copyright (c) 2007-2015 Mohammad S. Babaei
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
