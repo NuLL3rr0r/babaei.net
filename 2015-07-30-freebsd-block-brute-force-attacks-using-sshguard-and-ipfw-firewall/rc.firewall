@@ -1,0 +1,70 @@
+#!/bin/sh
+
+#  (The MIT License)
+#
+#  Copyright (c) 2015 Mohammad S. Babaei
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy
+#  of this software and associated documentation files (the "Software"), to deal
+#  in the Software without restriction, including without limitation the rights
+#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#  copies of the Software, and to permit persons to whom the Software is
+#  furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice shall be included in
+#  all copies or substantial portions of the Software.
+#
+#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+#  THE SOFTWARE.
+
+
+. /etc/rc.subr
+
+load_rc_config firewall
+
+fw_add="/sbin/ipfw -q add"
+
+if [ -z "${firewall_myservices_rules_id_start}" ] ;
+then
+    firewall_myservices_rules_id_start=56000
+fi
+
+if [ -z "${firewall_myservices_rules_id_step}" ] ;
+then
+    firewall_myservices_rules_id_step=10
+fi
+
+case ${1} in
+quietstart)
+        rule_id=${firewall_myservices_rules_id_start}
+
+        for i in ${firewall_allowservices} ;
+        do
+            for j in ${firewall_myservices_tcp} ;
+            do
+                ${fw_add} ${rule_id} pass tcp from ${i} to me ${j}
+                rule_id=`expr $rule_id + ${firewall_myservices_rules_id_step}`
+            done
+        done
+
+        for i in ${firewall_allowservices} ;
+        do
+            for j in ${firewall_myservices_udp} ;
+            do
+                ${fw_add} ${rule_id} pass udp from ${i} to me ${j}
+                rule_id=`expr $rule_id + ${firewall_myservices_rules_id_step}`
+            done
+        done
+    ;;
+quietstop)
+    ;;
+*)
+    echo "Error: unknown parameter '${1}'"
+    ;;
+esac
+
