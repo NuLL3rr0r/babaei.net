@@ -29,7 +29,7 @@
 *
 * @section DESCRIPTION
 *
-* C++14 std::make_unique workaround for C++11-enabled compiler
+* C++14 std::make_unique workaround for C++11-enabled compilers
 */
 
 
