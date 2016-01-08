@@ -29,7 +29,7 @@
 *
 * @section DESCRIPTION
 *
-* Contains necessary functions to uncompress a file.
+* C++14 std::make_unique workaround for C++11-enabled compiler
 */
 
 
