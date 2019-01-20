@@ -1,13 +1,13 @@
 /**
 * @file
-* @author  Mohammad S. Babaei <info@babaei.net>
+* @author  Mamadou Babaei <info@babaei.net>
 * @version 0.1.0
 *
 * @section LICENSE
 *
 * (The MIT License)
 *
-* Copyright (c) 2016 Mohammad S. Babaei
+* Copyright (c) 2016 Mamadou Babaei
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
